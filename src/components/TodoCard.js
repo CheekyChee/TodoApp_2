@@ -4,12 +4,17 @@ import todoIcon from '../images/correct-symbol.png';
 
 export default function TodoCard(props) {
   const { id, todoDes, whatTodo } = props.todoListItem;
-  console.log(props.todoListItem);
+  // console.log(props.todoListItem);
   return (
     <div className="item">
       <img className="ui avatar image" alt="todoIcon" src={todoIcon} />
       <div className="content">
-        <Link to={{ pathname: `/todo/${id}`, state: {todoDescription: props.todoListItem} }}>
+        <Link
+          to={{
+            pathname: `/todo/${id}`,
+            state: { todoDescription: props.todoListItem },
+          }}
+        >
           <div className="header">{whatTodo}</div>
           <div>{todoDes}</div>
         </Link>
@@ -19,6 +24,17 @@ export default function TodoCard(props) {
         style={{ color: 'red', marginTop: '7px' }}
         onClick={() => props.clickHandler(id)}
       ></i>
+      {/* <Link
+        to={{
+          pathname: `/edit`,
+          state: { todoDescription: props.todoListItem },
+        }}
+      >
+        <i
+          className="edit alternate outline icon"
+          style={{ color: 'red', marginTop: '7px', marginLeft: '10px' }}
+        ></i>
+      </Link> */}
     </div>
   );
 }

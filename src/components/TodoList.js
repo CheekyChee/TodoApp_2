@@ -7,8 +7,9 @@ export default function TodoList(props) {
     props.getTodoId(id);
   };
 
-  console.log(props);
+  // console.log(props);
   const renderTodoList = props.todos.map((todo) => {
+    // console.log(todo);
     return (
       <TodoCard
         todoListItem={todo}
