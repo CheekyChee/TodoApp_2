@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 export default function AddTodo(props) {
   const [todoDes, setTodoDes] = useState('');
   const [whatTodo, setWhatTodo] = useState('');
+
+  const history = useHistory();
+  const handleClick = () => {
+    history.push('/');
+  };
+
 
   const addForm = (e) => {
     e.preventDefault();
@@ -10,12 +17,12 @@ export default function AddTodo(props) {
       alert('All of the todo list is empty!!');
       return;
     }
-    const theTodo = {todoDes, whatTodo};
-    console.log(theTodo);
+    const theTodo = { todoDes, whatTodo };
     props.addToDoHandler(theTodo);
     setTodoDes('');
     setWhatTodo('');
   };
+
 
   return (
     <div className="ui main">
@@ -42,6 +49,9 @@ export default function AddTodo(props) {
           ></input>
         </div>
         <button className="ui button blue">Add</button>
+        <button className="ui button blue" onClick={handleClick}>
+          Go home
+        </button>
       </form>
     </div>
   );

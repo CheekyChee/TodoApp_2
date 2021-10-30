@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import todoIcon from '../images/correct-symbol.png';
 
 export default function TodoCard(props) {
@@ -8,8 +9,10 @@ export default function TodoCard(props) {
     <div className="item">
       <img className="ui avatar image" alt="todoIcon" src={todoIcon} />
       <div className="content">
-        <div className="header">{whatTodo}</div>
-        <div>{todoDes}</div>
+        <Link to={{ pathname: `/todo/${id}`, state: {todoDescription: props.todoListItem} }}>
+          <div className="header">{whatTodo}</div>
+          <div>{todoDes}</div>
+        </Link>
       </div>
       <i
         className="trash alternate outline icon"

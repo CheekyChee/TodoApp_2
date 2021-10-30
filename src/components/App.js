@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { uuid } from 'uuidv4';
 import './App.css';
 import Header from './Header';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
+import TodoDetail from './TodoDetail';
 
 function App() {
   const LOCAL_STORAGE_KEY = 'todos';
@@ -33,8 +35,25 @@ function App() {
   return (
     <div className="container ui">
       <Header />
-      <AddTodo addToDoHandler={addToDoHandler} />
-      <TodoList todos={todos} getTodoId={removeTodoHandler} />
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <TodoList {...props} todos={todos} getTodoId={removeTodoHandler} />
+          )}
+        />
+        <Route
+          path="/add"
+          render={(props) => (
+            <AddTodo {...props} addToDoHandler={addToDoHandler} />
+          )}
+        />
+        <Route path="/todo/:id" component={TodoDetail} />
+      </Switch>
+
+      {/* <AddTodo addToDoHandler={addToDoHandler} /> */}
+      {/* <TodoList todos={todos} getTodoId={removeTodoHandler} /> */}
     </div>
   );
 }
